@@ -1,23 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { AddableList } from './components';
+import { MeasurementsView } from './components/views/Measurements'
 
 function App() {
+  const list = [
+    { value: 'xxx0', text: 'yyy0' },
+    { value: 'xxx1', text: 'yyy1' },
+    { value: 'xxx2', text: 'yyy2' },
+    { value: 'xxx3', text: 'yyy3' },
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddableList id="ernie" list={list} />
+      <MeasurementsView />
     </div>
   );
 }

@@ -2,17 +2,6 @@ import React, {Fragment, useEffect, useState } from "react";
 import { EditableMeasurement } from "../EditableMeasurement";
 import { EditableListItem } from "../EditableList";
 
-
-const getMeasurements = async (cb) => {
-  if (!cb) {
-    console.warn('getMeasurements needs a callback');
-    return;
-  }
-  const response = await fetch('http://localhost:3000/api/measurement');
-  const measurements = await response.json();
-  cb(measurements);
-};
-
 const createSaveHandler = (update) => async (measurement) => {
   const {
     _id,
@@ -72,26 +61,7 @@ const createDeleteHandler = (measurement, update) => {
   }
 }
 
-const MeasurementsView = () => {
-  const [loadingStatus, setLoadingStatus] = useState(false);
-  const [measurements, setMeasurements] = useState([]);
-
-  const updateMeasurements = () => getMeasurements(m => setMeasurements(m));
-
-  useEffect(() => {
-    if (MeasurementsView.length) {
-      setLoadingStatus(false);
-    }
-  }, [measurements]);
-
-  useEffect(() => {
-    if (!loadingStatus && !measurements.length) {
-      setLoadingStatus(true);
-      console.log('fetchy');
-      getMeasurements(m => setMeasurements(m));
-    }
-  }, []);
-
+const MeasurementsView = ({measurements, updateMeasurements}) => {
   const createEditForm = (item) => {
     return () => (
       <EditableMeasurement

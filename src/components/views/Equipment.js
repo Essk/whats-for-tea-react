@@ -2,17 +2,6 @@ import React, {Fragment, useEffect, useState } from "react";
 import { EditableEquipment } from "../EditableEquipment";
 import { EditableListItem } from "../EditableList";
 
-
-const getEquipment = async (cb) => {
-  if (!cb) {
-    console.warn('getEquipment needs a callback');
-    return;
-  }
-  const response = await fetch('http://localhost:3000/api/equipment');
-  const equipment = await response.json();
-  cb(equipment);
-};
-
 const createSaveHandler = (update) => async (equipment) => {
   const {
     _id,
@@ -63,26 +52,7 @@ const createDeleteHandler = (equipment, update) => {
   }
 }
 
-const EquipmentView = () => {
-  const [loadingStatus, setLoadingStatus] = useState(false);
-  const [equipment, setEquipment] = useState([]);
-
-  const updateEquipment = () => getEquipment(i => setEquipment(i));
-
-  useEffect(() => {
-    if (equipment.length) {
-      setLoadingStatus(false);
-    }
-  }, [equipment]);
-
-  useEffect(() => {
-    if (!loadingStatus && !equipment.length) {
-      setLoadingStatus(true);
-      console.log('fetchy');
-      getEquipment(i => setEquipment(i));
-    }
-  }, []);
-
+const EquipmentView = ({equipment, updateEquipment}) => {
   const createEditForm = (item) => {
     return () => (
       <EditableEquipment

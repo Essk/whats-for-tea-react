@@ -2,17 +2,6 @@ import React, {Fragment, useEffect, useState } from "react";
 import { EditableIngredient } from "../EditableIngredient";
 import { EditableListItem } from "../EditableList";
 
-
-const getIngredients = async (cb) => {
-  if (!cb) {
-    console.warn('getIngredients needs a callback');
-    return;
-  }
-  const response = await fetch('http://localhost:3000/api/ingredient');
-  const ingredients = await response.json();
-  cb(ingredients);
-};
-
 const createSaveHandler = (update) => async (ingredient) => {
   const {
     _id,
@@ -63,26 +52,7 @@ const createDeleteHandler = (ingredient, update) => {
   }
 }
 
-const IngredientsView = () => {
-  const [loadingStatus, setLoadingStatus] = useState(false);
-  const [ingredients, setIngredients] = useState([]);
-
-  const updateIngredients = () => getIngredients(i => setIngredients(i));
-
-  useEffect(() => {
-    if (ingredients.length) {
-      setLoadingStatus(false);
-    }
-  }, [ingredients]);
-
-  useEffect(() => {
-    if (!loadingStatus && !ingredients.length) {
-      setLoadingStatus(true);
-      console.log('fetchy');
-      getIngredients(i => setIngredients(i));
-    }
-  }, []);
-
+const IngredientsView = ({ingredients, updateIngredients}) => {
   const createEditForm = (item) => {
     return () => (
       <EditableIngredient

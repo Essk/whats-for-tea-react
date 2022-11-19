@@ -13,7 +13,9 @@ function App() {
   return (
     <div className="App">
       <AddableList id="ernie" list={list} />
-      <MeasurementsView />
+      <div id="views" className="flex">
+          <MeasurementsView />
+      </div>
     </div>
   );
 }

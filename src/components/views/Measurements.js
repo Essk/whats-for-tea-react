@@ -2,6 +2,7 @@ import React, {Fragment, useEffect, useState } from "react";
 import { EditableMeasurement } from "../EditableMeasurement";
 import { EditableListItem } from "../EditableList";
 
+
 const getMeasurements = async (cb) => {
   if (!cb) {
     console.warn('getMeasurements needs a callback');
@@ -102,28 +103,28 @@ const MeasurementsView = () => {
   }
 
   return (
-    <Fragment>
-      {
-        measurements?.length ? (
-          <ul>
-            {
-              measurements.map((m) => (
-                <EditableListItem key={m._id} EditForm={createEditForm(m)} handleDelete={createDeleteHandler(m, updateMeasurements)}>
-                  {m.unitName}
-                </EditableListItem>
-              ))
-            }
-          </ul>
-        )
-          : null
-      }
-      <EditableMeasurement
-        measurement={{}}
-        measurements={measurements}
-        onSave={createSaveHandler(updateMeasurements)}
+    <div className="view-container flex flex-wrap basis-1/3 border-2 rounded-md border-green-600 bg-green-100" id="measurements-view">
+        <h2 className="text-xl basis-full text-center">Measurements</h2>
+        {
+          measurements?.length ? (
+            <ul className="basis-full p-2">
+              {
+                measurements.map((m) => (
+                  <EditableListItem key={m._id} EditForm={createEditForm(m)} handleDelete={createDeleteHandler(m, updateMeasurements)}>
+                    {m.unitName}
+                  </EditableListItem>
+                ))
+              }
+            </ul>
+          )
+            : null
+        }
+        <EditableMeasurement
+          measurement={{}}
+          measurements={measurements}
+          onSave={createSaveHandler(updateMeasurements)}
         />
-      
-    </Fragment>
+    </div>
   )
 };
 

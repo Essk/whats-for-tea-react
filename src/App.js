@@ -3,6 +3,7 @@ import './App.css';
 import { AddableList } from './components';
 import { MeasurementsView } from './components/views/Measurements'
 import { IngredientsView } from './components/views/Ingredients'
+import { EquipmentView } from './components/views/Equipment'
 
 function App() {
   const list = [
@@ -14,9 +15,10 @@ function App() {
   return (
     <div className="App">
       <AddableList id="ernie" list={list} />
-      <div id="views" className="flex">
+      <div id="views" className="flex flex-wrap">
           <MeasurementsView />
           <IngredientsView />
+          <EquipmentView />
       </div>
     </div>
   );

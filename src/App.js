@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { AddableList } from './components';
 import { MeasurementsView } from './components/views/Measurements'
+import { IngredientsView } from './components/views/Ingredients'
 
 function App() {
   const list = [
@@ -15,6 +16,7 @@ function App() {
       <AddableList id="ernie" list={list} />
       <div id="views" className="flex">
           <MeasurementsView />
+          <IngredientsView />
       </div>
     </div>
   );

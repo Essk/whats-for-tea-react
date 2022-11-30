@@ -5,7 +5,8 @@ const BasicButton = ({ children, onClick }) => (
     bg-slate-200 
     border-slate-400 
     text-slate-600
-    p-1
+    px-2
+    py-0
     m-1
     border-2
     rounded 

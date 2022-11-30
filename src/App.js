@@ -78,7 +78,7 @@ function App() {
           <MeasurementsView measurements={measurements} updateMeasurements={updateMeasurements}/>
           <IngredientsView ingredients={ingredients} updateIngredients={updateIngredients}/>
           <EquipmentView equipment={equipment} updateEquipment={updateEquipment}/>
-          <MealPartView mealParts={mealParts} updateMealParts={updateMealParts}/>
+          <MealPartView mealParts={mealParts} updateMealParts={updateMealParts} measurements={measurements} equipment={equipment} ingredients={ingredients}/>
       </div>
     </div>
   );
